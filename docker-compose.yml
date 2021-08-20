@@ -1,9 +1,18 @@
 version: '3.9'
+# TODO volumes and command should go to override compose file
 services:
   app:
     build:
       context: app
+    ports: # expose ports for testing until webserver is ready
+      - target: 8080
+        published: 8080
+    volumes:
+      - type: bind
+        source: ./app/
+        target: /go/src/app/
     networks:
       nw:
+    command: ["tail", "-f", "/dev/null"]
 networks:
   nw:
