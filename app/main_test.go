@@ -8,7 +8,7 @@ import (
 )
 
 func TestIndex(t *testing.T) {
-	resp, err := http.Get("http://localhost:8080")
+	resp, err := http.Get("https://localhost")
 	if err != nil {
 		t.Fatalf("Failed to access the server: %s", err)
 	}
