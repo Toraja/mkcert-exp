@@ -13,3 +13,9 @@ Use mkcert to create SSL certificate for localhost.
   ./web/download-mkcert.sh
   ./web/create-cert.sh
   ```
+
+## Note
+- This does not enable external client (such as mobile app) to access the web
+  server. (limitation of self-signed certificate due to the absence of
+  certificate authority)  
+  It is, however, possible to do that with extra configuration.
