@@ -4,9 +4,6 @@ services:
   app:
     build:
       context: app
-    ports: # expose ports for testing until webserver is ready
-      - target: 8080
-        published: 8080
     volumes:
       - type: bind
         source: ./app/
@@ -14,5 +11,25 @@ services:
     networks:
       nw:
     command: ["tail", "-f", "/dev/null"]
+  web:
+    image: nginx:latest
+    # build:
+      # context: web
+      # args:
+        # - XYZ
+    ports:
+      - target: 80
+        published: 80
+      - target: 443
+        published: 443
+    volumes:
+      - type: bind
+        source: ./web/certs
+        target: /etc/nginx/certs
+      - type: bind
+        source: ./web/secure.conf
+        target: /etc/nginx/conf.d/secure.conf
+    networks:
+      nw:
 networks:
   nw:
